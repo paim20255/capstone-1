@@ -2,8 +2,11 @@ package com.pluralsight;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Transaction {
+    private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm:ss");
+
     private LocalDate date;
     private LocalDateTime time;
     private String description;
