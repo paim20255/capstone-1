@@ -49,7 +49,14 @@ public class Main {
     }
 
 
-    private static void addTransaction(boolean b) {
+    private static void addTransaction(boolean isDeposit) {
+        if (isDeposit) {
+            System.out.println("\n--- Add Deposit ---");
+        } else {
+            System.out.println("\n--- Make Payment ---");
+        }
+        System.out.print("Description: ");
+        String description = myscanner.nextLine();
     }
 
     private static void ledgerScreen() {
