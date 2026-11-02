@@ -10,4 +10,13 @@ public class Transaction {
     private String vendor;
     private double amount;
 
+
+    public Transaction(LocalDate date, LocalDateTime time, String description, String vendor, double amount){
+        this.date = date;
+        this.time = time;
+        this.description = description;
+        this.vendor = vendor;
+        this.amount = amount;
+    }
+
 }
