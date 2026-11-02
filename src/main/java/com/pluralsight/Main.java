@@ -24,7 +24,34 @@ public class Main {
             System.out.println("X) Exit");
             System.out.print("Choose an option: ");
 
+            String choice = myscanner.nextLine().trim().toUpperCase();
+
+            switch (choice) {
+                case "D":
+                    addTransaction(true);
+                    break;
+                case "P":
+                    addTransaction(false);
+                    break;
+                case "L":
+                    ledgerScreen();
+                    break;
+                case "X":
+                    running = false;
+                    break;
+                default:
+                    System.out.println("Invalid option, please try again.");
+
+            }
+
 
         }
+    }
+
+
+    private static void addTransaction(boolean b) {
+    }
+
+    private static void ledgerScreen() {
     }
 }
