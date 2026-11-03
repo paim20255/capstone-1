@@ -1,19 +1,21 @@
 package com.pluralsight;
 
+import java.io.*;
 import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Main {
-    private static final String File_Name = "transaction.csv";
-    private static final Scanner myscanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         homeScreen();
         System.out.println("Goodbye");
-
     }
+
     // Working on the HOME Screen
     private static void homeScreen() {
+        // String File_Name = "transaction.csv";
+        Scanner myscanner = new Scanner(System.in);
+
         boolean running = true;
 
         while (running) {
@@ -28,10 +30,10 @@ public class Main {
 
             switch (choice) {
                 case "D":
-                    addTransaction(true);
+                    addDeposit();
                     break;
                 case "P":
-                    addTransaction(false);
+                    addPayment();
                     break;
                 case "L":
                     ledgerScreen();
@@ -43,18 +45,12 @@ public class Main {
                     System.out.println("Invalid option, please try again.");
 
             }
-
-
         }
+
     }
+    private static void addDeposit() {
+        Scanner myscanner = new Scanner(System.in);
 
-
-    private static void addTransaction(boolean isDeposit) {
-        if (isDeposit) {
-            System.out.println("\n--- Add Deposit ---");
-        } else {
-            System.out.println("\n--- Make Payment ---");
-        }
         System.out.print("Description: ");
         String description = myscanner.nextLine();
 
@@ -62,9 +58,59 @@ public class Main {
         String vendor = myscanner.nextLine();
 
         System.out.print("Amount: ");
-        double amount;
+        String amountText = myscanner.nextLine();
+        double amount = Double.parseDouble(amountText);
+
+        amount = 1 * amount;
+
+
     }
+
+
+    private static void addPayment() {
+        String File_Name = "transaction.csv";
+        Scanner myscanner = new Scanner(System.in);
+
+        System.out.print("Description: ");
+        String description = myscanner.nextLine();
+
+        System.out.print("Vendor: ");
+        String vendor = myscanner.nextLine();
+
+        System.out.print("Amount: ");
+        String amountTaken = myscanner.nextLine();
+        double amount = Double.parseDouble(amountTaken);
+
+
+        amount = -1 * amount;
+
+      /*  try {
+            FileReader fileReader = new FileReader("transaction.csv");
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            bufferedReader.read();
+
+            FileWriter fileWriter = new FileWriter(File_Name);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            bufferedWriter.write("");
+
+            bufferedReader.close();
+            bufferedWriter.close();
+
+
+        } catch (IOException e) {
+            System.out.println("Invalid, try again.");
+        } */
+
+
+    }
+
 
     private static void ledgerScreen() {
     }
-}
+
+    }
+
+
+
