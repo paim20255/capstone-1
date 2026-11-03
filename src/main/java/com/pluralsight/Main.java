@@ -57,6 +57,12 @@ public class Main {
         }
         System.out.print("Description: ");
         String description = myscanner.nextLine();
+
+        System.out.print("Vendor: ");
+        String vendor = myscanner.nextLine();
+
+        System.out.print("Amount: ");
+        double amount;
     }
 
     private static void ledgerScreen() {
