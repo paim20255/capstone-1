@@ -51,6 +51,8 @@ public class Main {
     private static void addDeposit() {
         Scanner myscanner = new Scanner(System.in);
 
+        System.out.println("\n--- Add Deposit ---");
+
         System.out.print("Description: ");
         String description = myscanner.nextLine();
 
@@ -62,14 +64,13 @@ public class Main {
         double amount = Double.parseDouble(amountText);
 
         amount = 1 * amount;
-
-
     }
-
 
     private static void addPayment() {
         String File_Name = "transaction.csv";
         Scanner myscanner = new Scanner(System.in);
+
+        System.out.println("\n--- Make Payment ---");
 
         System.out.print("Description: ");
         String description = myscanner.nextLine();
@@ -81,36 +82,62 @@ public class Main {
         String amountTaken = myscanner.nextLine();
         double amount = Double.parseDouble(amountTaken);
 
-
-        amount = -1 * amount;
-
-      /*  try {
-            FileReader fileReader = new FileReader("transaction.csv");
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-
-            bufferedReader.read();
-
-            FileWriter fileWriter = new FileWriter(File_Name);
-            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-
-            bufferedWriter.write("");
-
-            bufferedReader.close();
-            bufferedWriter.close();
-
-
-        } catch (IOException e) {
-            System.out.println("Invalid, try again.");
-        } */
-
+        if (amount <= 0) {
+            amount = -1 * amount;
+        }
 
     }
-
-
     private static void ledgerScreen() {
-    }
+        Scanner myscanner = new Scanner(System.in);
+
+        boolean ledger = true;
+
+        while (ledger) {
+            System.out.println("\n===== LEDGER =====");
+            System.out.println("A) All");
+            System.out.println("D) Deposits");
+            System.out.println("P) Payments");
+            System.out.println("R) Reports");
+            System.out.println("H) Home");
+            System.out.print("Choose an option: ");
+
+            String choice = myscanner.nextLine().toUpperCase();
+
+            switch (choice) {
+                case "A":
+                    allEntries();
+                    break;
+                case "D":
+                    displayDeposits();
+                    break;
+                case "P":
+                    displayPayments();
+                case "R":
+                    reportScreen();
+                    break;
+                case "H":
+                    return;
+                default:
+                    System.out.println("Not an Option");
+            }
+        }
+
 
     }
+
+    private static void reportScreen() {
+    }
+
+    private static void displayPayments() {
+    }
+
+    private static void displayDeposits() {
+    }
+
+    private static void allEntries() {
+    }
+
+}
 
 
 
