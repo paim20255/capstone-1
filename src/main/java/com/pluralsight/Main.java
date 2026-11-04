@@ -121,23 +121,69 @@ public class Main {
                     System.out.println("Not an Option");
             }
         }
-
-
     }
 
     private static void reportScreen() {
+        Scanner myscanner = new Scanner(System.in);
+
+        boolean report = true;
+
+        while (report) {
+
+            System.out.println("1) Month To Date");
+            System.out.println("2) Previous Month");
+            System.out.println("3) Year to Date");
+            System.out.println("4) Previous Year");
+            System.out.println("5) Search By Vendor");
+            System.out.println("0) Back");
+            System.out.println("H) Home");
+            System.out.print("Choose an option: ");
+
+            String choice = myscanner.nextLine();
+
+            switch (choice) {
+                case "1":
+                    //System.out.print("Month To Date");
+                    break;
+                case "2":
+                    //System.out.println("Previous Month");
+                    break;
+                case "3":
+                    break;
+                case "4":
+                    break;
+                case "5":
+                    System.out.println("Enter the vendor name: ");
+                    break;
+                case "0":
+                    return;
+                case "H":
+                    return;
+                default:
+                    System.out.println("Not an option, please try again");
+            }
+
+        }
     }
 
-    private static void displayPayments() {
+
+
+    private static void allEntries() {
     }
 
     private static void displayDeposits() {
     }
 
-    private static void allEntries() {
+    private static void displayPayments() {
+
+    }
     }
 
-}
+
+
+
+
+
 
 
 
