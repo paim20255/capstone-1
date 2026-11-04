@@ -54,7 +54,7 @@ public class Main {
 
     private static void addDeposit() {
         Scanner myscanner = new Scanner(System.in);
-        //String File_Name = "transaction.csv";
+        String File_Name = "src/main/resources/transaction.csv";
 
         System.out.println("\n--- Add Deposit ---");
 
@@ -73,18 +73,21 @@ public class Main {
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("HH:mm:ss");
         String formatterDate = today.format(fmt);
 
-        System.out.println(date + "|" + formatterDate + "|" + description + "|" + vendor + "|" + amount);
+        String sum = (date + "|" + formatterDate + "|" + description + "|" + vendor + "|" + amount);
 
         try {
-            FileWriter writer = new FileWriter("transaction.csv", true);
+            FileWriter writer = new FileWriter(File_Name, true);
             BufferedWriter bufferedWriter = new BufferedWriter(writer);
 
-            writer.write("transaction:\n");
+            writer.write("transaction\n");
+            bufferedWriter.write(sum);
+
+            bufferedWriter.close();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("Error, please try again.");
         }
 
-        // todo: write (append) that string to my transactions file
+
 
     }
 
@@ -165,10 +168,8 @@ public class Main {
 
             switch (choice) {
                 case "1":
-                    //System.out.print("Month To Date");
                     break;
                 case "2":
-                    //System.out.println("Previous Month");
                     break;
                 case "3":
                     break;
