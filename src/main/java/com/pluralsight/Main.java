@@ -73,26 +73,24 @@ public class Main {
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("HH:mm:ss");
         String formatterDate = today.format(fmt);
 
-        String sum = (date + "|" + formatterDate + "|" + description + "|" + vendor + "|" + amount);
+        String result = (date + "|" + formatterDate + "|" + description + "|" + vendor + "|" + amount);
 
         try {
             FileWriter writer = new FileWriter(File_Name, true);
             BufferedWriter bufferedWriter = new BufferedWriter(writer);
 
             writer.write("transaction\n");
-            bufferedWriter.write(sum);
+            bufferedWriter.write(result);
 
             bufferedWriter.close();
         } catch (IOException e) {
             System.out.println("Error, please try again.");
         }
 
-
-
     }
 
     private static void addPayment() {
-        String File_Name = "transaction.csv";
+        String File_Name = "src/main/resources/transaction.csv";
         Scanner myscanner = new Scanner(System.in);
 
         System.out.println("\n--- Make Payment ---");
@@ -108,6 +106,26 @@ public class Main {
         double amount = Double.parseDouble(amountTaken);
 
         amount = -1 * amount;
+
+        LocalDateTime today = LocalDateTime.now();
+        LocalDate date = LocalDate.now();
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String formatterDate = today.format(fmt);
+
+        String paymentResult =(date + "|" + formatterDate + "|" + description + "|" + vendor + "|" + amount);
+
+        try {
+            FileWriter writer = new FileWriter(File_Name, true);
+            BufferedWriter bufferedWriter = new BufferedWriter(writer);
+
+            writer.write("\n");
+            bufferedWriter.write(paymentResult);
+
+            bufferedWriter.close();
+
+        } catch (IOException e) {
+            System.out.println("Error");
+        }
 
     }
 
