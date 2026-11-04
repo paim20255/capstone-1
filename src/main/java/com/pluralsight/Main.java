@@ -2,6 +2,9 @@ package com.pluralsight;
 
 import java.io.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Main {
@@ -48,8 +51,10 @@ public class Main {
         }
 
     }
+
     private static void addDeposit() {
         Scanner myscanner = new Scanner(System.in);
+        //String File_Name = "transaction.csv";
 
         System.out.println("\n--- Add Deposit ---");
 
@@ -63,7 +68,24 @@ public class Main {
         String amountText = myscanner.nextLine();
         double amount = Double.parseDouble(amountText);
 
-        amount = 1 * amount;
+        LocalDateTime today = LocalDateTime.now();
+        LocalDate date = LocalDate.now();
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String formatterDate = today.format(fmt);
+
+        System.out.println(date + "|" + formatterDate + "|" + description + "|" + vendor + "|" + amount);
+
+        try {
+            FileWriter writer = new FileWriter("transaction.csv", true);
+            BufferedWriter bufferedWriter = new BufferedWriter(writer);
+
+            writer.write("transaction:\n");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        // todo: write (append) that string to my transactions file
+
     }
 
     private static void addPayment() {
@@ -82,11 +104,10 @@ public class Main {
         String amountTaken = myscanner.nextLine();
         double amount = Double.parseDouble(amountTaken);
 
-        if (amount <= 0) {
-            amount = -1 * amount;
-        }
+        amount = -1 * amount;
 
     }
+
     private static void ledgerScreen() {
         Scanner myscanner = new Scanner(System.in);
 
@@ -130,6 +151,7 @@ public class Main {
 
         while (report) {
 
+            System.out.println("\n===== REPORT SCREEN =====");
             System.out.println("1) Month To Date");
             System.out.println("2) Previous Month");
             System.out.println("3) Year to Date");
@@ -139,7 +161,7 @@ public class Main {
             System.out.println("H) Home");
             System.out.print("Choose an option: ");
 
-            String choice = myscanner.nextLine();
+            String choice = myscanner.nextLine().toUpperCase();
 
             switch (choice) {
                 case "1":
@@ -153,7 +175,6 @@ public class Main {
                 case "4":
                     break;
                 case "5":
-                    System.out.println("Enter the vendor name: ");
                     break;
                 case "0":
                     return;
@@ -167,8 +188,10 @@ public class Main {
     }
 
 
-
     private static void allEntries() {
+        // todo: open transaction file for reading
+        // todo: read each line in the file and print it
+
     }
 
     private static void displayDeposits() {
@@ -177,7 +200,7 @@ public class Main {
     private static void displayPayments() {
 
     }
-    }
+}
 
 
 
