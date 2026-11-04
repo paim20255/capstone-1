@@ -16,7 +16,6 @@ public class Main {
 
     // Working on the HOME Screen
     private static void homeScreen() {
-        // String File_Name = "transaction.csv";
         Scanner myscanner = new Scanner(System.in);
 
         boolean running = true;
@@ -154,6 +153,7 @@ public class Main {
                     break;
                 case "P":
                     displayPayments();
+                    break;
                 case "R":
                     reportScreen();
                     break;
@@ -208,6 +208,28 @@ public class Main {
 
 
     private static void allEntries() {
+        String File_Name = "src/main/resources/transaction.csv";
+
+        try {
+            FileReader fileReader = new FileReader(File_Name);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            String files = bufferedReader.readLine();
+
+            // Read until there is nothing else to read.
+            while ((files = bufferedReader.readLine()) != null) {
+                System.out.println(files);
+
+            }
+            bufferedReader.close();
+
+
+        } catch (FileNotFoundException e) {
+            System.out.println("Error!");
+        } catch (IOException e) {
+            System.out.println();
+        }
+
         // todo: open transaction file for reading
         // todo: read each line in the file and print it
 
