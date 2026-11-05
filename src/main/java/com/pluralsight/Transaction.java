@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Transaction {
-    DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm:ss");
+    //DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm:ss");
 
     private LocalDate date;
     private LocalDateTime time;
@@ -23,6 +23,7 @@ public class Transaction {
     }
 
     public LocalDate getDate() {
+
         return date;
     }
 

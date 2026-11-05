@@ -11,7 +11,7 @@ public class Main {
 
     public static void main(String[] args) {
         homeScreen();
-        System.out.println("Goodbye");
+        System.out.println("Goodbye, thank you for using our application.");
     }
 
     // Working on the HOME Screen
@@ -78,7 +78,7 @@ public class Main {
             FileWriter writer = new FileWriter(File_Name, true);
             BufferedWriter bufferedWriter = new BufferedWriter(writer);
 
-            writer.write("transaction\n");
+            writer.write("\n");
             bufferedWriter.write(result);
 
             bufferedWriter.close();
@@ -179,13 +179,13 @@ public class Main {
             System.out.println("4) Previous Year");
             System.out.println("5) Search By Vendor");
             System.out.println("0) Back");
-            System.out.println("H) Home");
             System.out.print("Choose an option: ");
 
             String choice = myscanner.nextLine().toUpperCase();
 
             switch (choice) {
                 case "1":
+                    displayMonthToDate();
                     break;
                 case "2":
                     break;
@@ -197,8 +197,6 @@ public class Main {
                     break;
                 case "0":
                     return;
-                case "H":
-                    return;
                 default:
                     System.out.println("Not an option, please try again");
             }
@@ -206,23 +204,33 @@ public class Main {
         }
     }
 
+    private static void displayMonthToDate() {
+        // todo: first get today's date as LocalDate object
+        // todo: get the current month from today's , e.g. 1, or 11
+        // todo: get current year from today's date, e.g. 2026
+        //
+        //  loop through your transaction lines like in displayDeposit
+        // todo: get the date of the transaction as LocalDate
+        // todo: for each transaction, if the transaction year is currernt year and
+        // transaction month is the current month, print it, baby!
+    }
+
 
     private static void allEntries() {
-        String File_Name = "src/main/resources/transaction.csv";
+        String fileName = "src/main/resources/transaction.csv";
 
         try {
-            FileReader fileReader = new FileReader(File_Name);
+            FileReader fileReader = new FileReader(fileName);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
-            String files = bufferedReader.readLine();
+            String line = bufferedReader.readLine();
 
             // Read until there is nothing else to read.
-            while ((files = bufferedReader.readLine()) != null) {
-                System.out.println(files);
+            while ((line = bufferedReader.readLine()) != null) {
+                System.out.println(line);
 
             }
             bufferedReader.close();
-
 
         } catch (FileNotFoundException e) {
             System.out.println("Error!");
@@ -230,15 +238,50 @@ public class Main {
             System.out.println();
         }
 
-        // todo: open transaction file for reading
-        // todo: read each line in the file and print it
+        // done: open transaction file for reading
+        // done: read each line in the file and print it
 
     }
 
     private static void displayDeposits() {
+        String fileName = "src/main/resources/transaction.csv";
+
+        try {
+            FileReader fileReader = new FileReader(fileName);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            String line = bufferedReader.readLine();
+
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] lineParts = line.split("\\|");
+
+                double depositPayment = Double.parseDouble(lineParts[4]);
+
+                if (depositPayment >= 0) {
+                    //String transactions =
+                    System.out.println(line);
+                }
+            }
+
+        } catch (FileNotFoundException e) {
+            System.out.println("Error, try again.");
+        } catch (IOException e) {
+            System.out.println("Please select a different option!");
+        }
     }
 
     private static void displayPayments() {
+// todo same as displayDeposit but with different sign
+        String fileName = "src/main/resources/transaction.csv";
+
+        try {
+            FileReader fileReader = new FileReader(fileName);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            String b
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 }
