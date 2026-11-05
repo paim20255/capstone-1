@@ -258,7 +258,6 @@ public class Main {
                 double depositPayment = Double.parseDouble(lineParts[4]);
 
                 if (depositPayment >= 0) {
-                    //String transactions =
                     System.out.println(line);
                 }
             }
@@ -271,15 +270,27 @@ public class Main {
     }
 
     private static void displayPayments() {
-// todo same as displayDeposit but with different sign
+// done: same as displayDeposit but with different sign
         String fileName = "src/main/resources/transaction.csv";
 
         try {
             FileReader fileReader = new FileReader(fileName);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
-            String b
+            String line = bufferedReader.readLine();
+
+            while ((line = bufferedReader.readLine()) != null) {
+               String[] parts = line.split("\\|");
+
+               double makePayment = Double.parseDouble(parts[4]);
+
+               if (makePayment < 0){
+                   System.out.println(line);
+               }
+            }
         } catch (FileNotFoundException e) {
+            System.out.println("Invalid Try again.");
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
