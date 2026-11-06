@@ -1,1 +1,24 @@
 # Accounting Ledger
+
+## Description
+A Java console application that manages financial transactions. Users can add deposits and payments, view a ledger of all transactions, generate month-to-date or year-to-date reports, and search for specific vendors.
+
+## Features
+- Add Transaction (Deposit/Payment)
+- View Ledger (All Transactions)
+- Reports:
+    - Month-to-Date
+    - Previous Month
+    - Year-to-Date
+    - Previous Year
+- Search by Vendor
+
+## Requirements
+- Java 17
+- IntelliJ IDEA
+
+## How to Run
+1. Clone the repository.
+2. Open the project in IntelliJ IDEA.
+3. Run the `AccountingLedger` class.
+4. Follow the menu prompts in the console.
