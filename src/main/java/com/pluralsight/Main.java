@@ -196,6 +196,7 @@ public class Main {
                     displayPreviousYears();
                     break;
                 case "5":
+                    displaySearchByVendor();
                     break;
                 case "0":
                     return;
@@ -205,12 +206,41 @@ public class Main {
         }
     }
 
+    private static void displaySearchByVendor() {
+    }
+
     private static void displayPreviousYears() {
         String fileNames = "src/main/resources/transaction.csv";
 
         LocalDate today = LocalDate.now();
         LocalDate previousYears = today.minusYears(3);
 
+        int pastYears = previousYears.getYear();
+
+        try {
+            FileReader fileReader = new FileReader(fileNames);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            bufferedReader.readLine();
+
+            String line;
+
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] parts = line.split("\\|");
+
+                LocalDate transaction = LocalDate.parse(parts[0]);
+
+                if (transaction.getYear() == pastYears) {
+                    System.out.println(line);
+                }
+
+            }
+            bufferedReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Try Again!");
+        } catch (IOException e) {
+            System.out.println();
+        }
 
 
     }
