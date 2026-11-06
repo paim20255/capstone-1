@@ -213,6 +213,26 @@ public class Main {
         System.out.print("Enter vendor name: ");
         String vendor = myscanner.nextLine().trim();
 
+        try {
+            FileReader fileReader = new FileReader(fileNames);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            bufferedReader.readLine();
+
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] parts = line.split("\\|");
+
+                if (parts[3].equalsIgnoreCase(vendor)){
+                    System.out.println(line);
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Wrong option.");
+        } catch (IOException e) {
+            System.out.println("Choose a vendor.");
+        }
+
     }
 
     private static void displayPreviousYears() {
