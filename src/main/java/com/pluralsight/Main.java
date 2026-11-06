@@ -193,6 +193,7 @@ public class Main {
                     displayYearToDate();
                     break;
                 case "4":
+                    displayPreviousYears();
                     break;
                 case "5":
                     break;
@@ -204,8 +205,18 @@ public class Main {
         }
     }
 
+    private static void displayPreviousYears() {
+        String fileNames = "src/main/resources/transaction.csv";
+
+        LocalDate today = LocalDate.now();
+        LocalDate previousYears = today.minusYears(3);
+
+
+
+    }
+
     private static void displayYearToDate() {
-        String fileNames = "src/main/resources/transation.csv";
+        String fileNames = "src/main/resources/transaction.csv";
 
         LocalDate today = LocalDate.now();
 
@@ -218,16 +229,20 @@ public class Main {
             bufferedReader.readLine();
 
             String line;
+
             while ((line = bufferedReader.readLine()) != null) {
                 String[] parts = line.split("\\|");
 
+                LocalDate transactionDate = LocalDate.parse(parts[0]);
 
+                if (transactionDate.getYear() == year) {
+                    System.out.println(line);
+                }
             }
-
-
+            bufferedReader.close();
 
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            System.out.println("Error.");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -248,7 +263,7 @@ public class Main {
 
             bufferedReader.readLine();
 
-            String line = bufferedReader.readLine();
+            String line;
 
             while ((line = bufferedReader.readLine()) != null) {
                 String[] parts = line.split("\\|");
@@ -259,6 +274,7 @@ public class Main {
                     System.out.println(line);
                 }
             }
+            bufferedReader.close();
 
 
         } catch (FileNotFoundException e) {
@@ -283,7 +299,7 @@ public class Main {
 
             bufferedReader.readLine();
 
-            String line = bufferedReader.readLine();
+            String line;
 
             while ((line = bufferedReader.readLine()) != null) {
                 String[] parts = line.split("\\|");
@@ -294,6 +310,7 @@ public class Main {
                     System.out.println(line);
                 }
             }
+            bufferedReader.close();
 
 
         } catch (FileNotFoundException e) {
@@ -358,6 +375,7 @@ public class Main {
                     System.out.println(line);
                 }
             }
+            bufferedReader.close();
 
         } catch (FileNotFoundException e) {
             System.out.println("Error, try again.");
@@ -385,6 +403,7 @@ public class Main {
                    System.out.println(line);
                }
             }
+            bufferedReader.close();
         } catch (FileNotFoundException e) {
             System.out.println("Invalid Try again.");
         } catch (IOException e) {
