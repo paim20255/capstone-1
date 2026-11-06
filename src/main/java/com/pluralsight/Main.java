@@ -48,7 +48,6 @@ public class Main {
 
             }
         }
-
     }
 
     private static void addDeposit() {
@@ -200,18 +199,48 @@ public class Main {
                 default:
                     System.out.println("Not an option, please try again");
             }
-
         }
     }
 
     private static void displayMonthToDate() {
-        // todo: first get today's date as LocalDate object
-        // todo: get the current month from today's , e.g. 1, or 11
-        // todo: get current year from today's date, e.g. 2026
-        //
+        String fileName = "src/main/resources/transaction.csv";
+
+        LocalDate today = LocalDate.now();
+        int currentMonth = today.getMonthValue();
+        int currentYear = today.getYear();
+
+        try {
+            FileReader fileReader = new FileReader(fileName);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            bufferedReader.readLine();
+
+            String line = bufferedReader.readLine();
+
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] parts = line.split("\\|");
+
+                LocalDate transactionDate = LocalDate.parse(parts[0]);
+
+                if (transactionDate.getYear() == currentYear && transactionDate.getMonthValue() == currentMonth) {
+                    System.out.println(line);
+                }
+            }
+
+
+        } catch (FileNotFoundException e) {
+            System.out.println("Error reading the file.");
+        } catch (IOException e) {
+            System.out.println();
+        }
+
+
+        // done: first get today's date as LocalDate object
+        // done: get current year from today's date, e.g. 2026
+        // // done: get the current month from today's , e.g. 1, or 11
         //  loop through your transaction lines like in displayDeposit
-        // todo: get the date of the transaction as LocalDate
-        // todo: for each transaction, if the transaction year is currernt year and
+        // done: get the date of the transaction as LocalDate
+        // done: for each transaction, if the transaction year is current year and
         // transaction month is the current month, print it, baby!
     }
 
@@ -257,7 +286,7 @@ public class Main {
 
                 double depositPayment = Double.parseDouble(lineParts[4]);
 
-                if (depositPayment >= 0) {
+                if (depositPayment > 0) {
                     System.out.println(line);
                 }
             }
