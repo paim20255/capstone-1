@@ -217,6 +217,13 @@ public class Main {
 
             bufferedReader.readLine();
 
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] parts = line.split("\\|");
+
+
+            }
+
 
 
         } catch (FileNotFoundException e) {
