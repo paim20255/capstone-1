@@ -25,7 +25,7 @@ A Java console application that manages financial transactions. Users can add de
 
 ## My Home Screen!
 ```java
- System.out.println("\n====Home====");
+            System.out.println("\n====Home====");
             System.out.println("D) Add Deposit");
             System.out.println("P) Make Payment (Debit)");
             System.out.println("L) Ledger");
