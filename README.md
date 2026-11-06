@@ -22,3 +22,12 @@ A Java console application that manages financial transactions. Users can add de
 2. Open the project in IntelliJ IDEA.
 3. Run the `AccountingLedger` class.
 4. Follow the menu prompts in the console.
+
+## My Home Screen!
+```java
+ System.out.println("\n====Home====");
+            System.out.println("D) Add Deposit");
+            System.out.println("P) Make Payment (Debit)");
+            System.out.println("L) Ledger");
+            System.out.println("X) Exit");
+            System.out.print("Choose an option: ");
