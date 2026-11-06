@@ -210,7 +210,7 @@ public class Main {
         Scanner myscanner = new Scanner(System.in);
         String fileNames = "src/main/resources/transaction.csv";
 
-        System.out.print("Enter vendor name: ");
+        System.out.print("\nEnter vendor name: ");
         String vendor = myscanner.nextLine().trim();
 
         try {
