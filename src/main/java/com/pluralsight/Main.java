@@ -187,8 +187,10 @@ public class Main {
                     displayMonthToDate();
                     break;
                 case "2":
+                    displayPreviousMonth();
                     break;
                 case "3":
+                    displayYearToDate();
                     break;
                 case "4":
                     break;
@@ -200,6 +202,64 @@ public class Main {
                     System.out.println("Not an option, please try again");
             }
         }
+    }
+
+    private static void displayYearToDate() {
+        String fileNames = "src/main/resources/transation.csv";
+
+        LocalDate today = LocalDate.now();
+
+        int year = today.getYear();
+
+        try {
+            FileReader fileReader = new FileReader(fileNames);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            bufferedReader.readLine();
+
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static void displayPreviousMonth() {
+        String fileName = "src/main/resources/transaction.csv";
+
+        LocalDate today = LocalDate.now();
+        LocalDate lastMonth = today.minusMonths(1);
+
+        int targetMonth = lastMonth.getMonthValue();
+        int targetYear = lastMonth.getYear();
+
+        try {
+            FileReader fileReader = new FileReader(fileName);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            bufferedReader.readLine();
+
+            String line = bufferedReader.readLine();
+
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] parts = line.split("\\|");
+
+                LocalDate transactionDate = LocalDate.parse(parts[0]);
+
+                if (transactionDate.getYear() == targetYear && transactionDate.getMonthValue() == targetMonth) {
+                    System.out.println(line);
+                }
+            }
+
+
+        } catch (FileNotFoundException e) {
+            System.out.println("Option not found.");
+        } catch (IOException e) {
+            System.out.println("Error!");
+        }
+
+
     }
 
     private static void displayMonthToDate() {
