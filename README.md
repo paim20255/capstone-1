@@ -15,7 +15,7 @@ A Java console application that manages financial transactions. Users can add de
 
 ## Requirements
 - Java 17
-- IntelliJ IDEA
+- IntelliJ 
 
 ## How to Run
 1. Clone the repository.
