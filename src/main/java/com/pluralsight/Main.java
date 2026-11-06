@@ -207,6 +207,12 @@ public class Main {
     }
 
     private static void displaySearchByVendor() {
+        Scanner myscanner = new Scanner(System.in);
+        String fileNames = "src/main/resources/transaction.csv";
+
+        System.out.print("Enter vendor name: ");
+        String vendor = myscanner.nextLine().trim();
+
     }
 
     private static void displayPreviousYears() {
